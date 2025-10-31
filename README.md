@@ -18,3 +18,4 @@ Workflow automatycznie buduje obraz Docker i uruchamia `check_tools.sh`, aby zwe
 ## Autor
 - GitHub: alittlerat
 
+### Data ostaniej edycji 31.10.2025
