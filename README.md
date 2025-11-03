@@ -1,21 +1,126 @@
-# Pierwszy Projekt DevOps
+# 🚀 Pierwszy Projekt DevOps
 
-## Opis
-Projekt do nauki praktyk DevOps. Zawiera Dockerfile, skrypt instalacyjny oraz testy sprawdzające poprawność instalacji podstawowych narzędzi.
+## 📘 Opis
 
-## Struktura projektu
-- `Dockerfile` – obraz Ubuntu 22.04 z podstawowymi narzędziami 
-- `/src` – kod źródłowy, np. skrypt instalacyjny `instal-tools.sh` 
-- `/tests` – testy, np. `check_tools.sh` 
-- `/docs` – dokumentacja projektu, zawiera opis Dockerfile, skryptów instalacyjnych, testów oraz workflow GitHub Actions
-## Uruchomienie
-Projekt można uruchomić lokalnie poprzez budowanie obrazu Docker i uruchomienie kontenera. W kontenerze można sprawdzić wersje wszystkich narzędzi przy użyciu `check_tools.sh`.
-Narzędzia można też zainstalować lokalnie na hoście korzystając ze skryptu `instal-tools.sh`.
+Projekt do nauki praktyk **DevOps**.
+Zawiera pliki i skrypty pozwalające na budowę środowiska testowego w Dockerze, instalację podstawowych narzędzi oraz analizę logów.
+Służy do nauki automatyzacji, CI/CD oraz podstaw pracy z narzędziami w stylu GitOps.
 
-## GitHub Actions
-Workflow automatycznie buduje obraz Docker i uruchamia `check_tools.sh`, aby zweryfikować zainstalowane narzędzia.
+---
 
-## Autor
-- GitHub: alittlerat
+## 📂 Struktura projektu
 
-### Data ostaniej edycji 31.10.2025
+| Katalog / Plik         | Opis                                                                                    |
+| ---------------------- | --------------------------------------------------------------------------------------- |
+| `Dockerfile`           | Obraz **Ubuntu 22.04** z zainstalowanymi podstawowymi narzędziami (curl, git, jq, itp.) |
+| `src/install-tools.sh` | Skrypt instalacyjny – instaluje wymagane narzędzia lokalnie lub w kontenerze            |
+| `tests/check_tools.sh` | Skrypt testowy – weryfikuje poprawność instalacji narzędzi                              |
+| `src/create.sh`        | Skrypt Bash do tworzenia struktury projektu (z opcjonalnym README i katalogami)         |
+| `src/doc-summary.sh`   | Skrypt Bash analizujący logi, generujący raport błędów w formacie CSV                   |
+| `tests/`               | Zawiera testy i przykładowe pliki logów (np. `test.log`)                                |
+| `docs/`                | Dokumentacja projektu – opis Dockerfile, skryptów i workflow GitHub Actions             |
+| `src/report.csv`           | Przykładowy raport wygenerowany przez `doc-summary.sh`                                  |
+
+---
+
+## 🧰 Skrypty w katalogu `src/`
+
+### 1. `create.sh` — generator struktury projektu
+
+Tworzy nowy projekt z podstawową strukturą katalogów i opcjonalnym plikiem README.
+
+**Użycie:**
+
+```bash
+./create.sh [opcje] <nazwa_projektu> [podfoldery...]
+```
+
+**Opcje:**
+
+* `-r` — pomija tworzenie pliku README.md
+
+**Przykład:**
+
+```bash
+./create.sh myapp src config docs
+./create.sh -r devops-lab scripts logs
+```
+
+---
+
+### 2. `doc-summary.sh` — analiza logów
+
+Analizuje błędy w pliku logu, zlicza ich ilość, pokazuje 10 najczęstszych i generuje raport CSV.
+
+**Użycie:**
+
+```bash
+./doc-summary.sh <plik_logu> [plik_wyjściowy.csv]
+```
+
+**Przykłady:**
+
+```bash
+# Analiza przykładowego logu
+./doc-summary.sh tests/test.log
+
+# Analiza własnego logu systemowego i zapis do custom_report.csv
+./doc-summary.sh /var/log/syslog custom_report.csv
+```
+
+**Wynik działania:**
+
+* Liczba wszystkich błędów
+* 10 najczęstszych błędów
+* Plik `report.csv` z wynikami
+
+
+## 🧪 Uruchomienie projektu
+
+Można uruchomić lokalnie lub w Dockerze:
+
+```bash
+# Budowanie obrazu
+docker build -t devops-lab .
+
+# Uruchomienie kontenera interaktywnego
+docker run -it devops-lab bash
+
+# Wewnątrz kontenera
+bash src/check_tools.sh
+```
+
+Możesz też uruchomić skrypty lokalnie:
+
+```bash
+bash src/install-tools.sh
+bash src/check_tools.sh
+```
+
+---
+
+## ⚙️ GitHub Actions
+
+Workflow CI/CD (plik `.github/workflows/main.yml`) automatycznie:
+
+* Buduje obraz Dockera,
+* Uruchamia `src/check_tools.sh`,
+* Weryfikuje, czy narzędzia zostały poprawnie zainstalowane.
+
+=========================================================================================================================
+
+## 🧩 Pliki przykładowe
+
+| Plik             | Opis                                                                                            |
+| ---------------- | ----------------------------------------------------------------------------------------------- |
+| `tests/test.log` | Przykładowy plik logów do testowania `doc-summary.sh`. Można użyć własnych logów aplikacyjnych. |
+| `report.csv`     | Przykładowy raport wygenerowany z `test.log`.                                                   |
+
+---
+
+## 👨‍💻 Autor
+
+**GitHub:** [alittlerat](https://github.com/alittlerat)
+**Data ostatniej edycji:** 03.11.2025
+
+==========================================================================================================================
