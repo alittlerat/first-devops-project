@@ -1,0 +1,7 @@
+Błąd,Ilość
+"[2025-11-03 10:04:00] ERROR: Permission denied",10
+"[2025-11-03 10:03:00] ERROR: Connection timeout",10
+"[2025-11-03 10:02:00] ERROR: File not found",10
+"[2025-11-03 10:05:00] ERROR: Connection timeout[2025-11-03 10:00:00] ERROR: Connection timeout",9
+"[2025-11-03 10:05:00] ERROR: Connection timeout",1
+"[2025-11-03 10:00:00] ERROR: Connection timeout",1
