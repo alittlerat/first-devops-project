@@ -121,5 +121,5 @@ Workflow CI/CD (plik `.github/workflows/main.yml`) automatycznie:
 ## 👨‍💻 Autor
 
 **GitHub:** [alittlerat](https://github.com/alittlerat)
-**Data ostatniej edycji:** 03.11.2025
+**Data ostatniej edycji:** 06.11.2025
 
