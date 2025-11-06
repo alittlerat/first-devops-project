@@ -13,9 +13,9 @@ Służy do nauki automatyzacji, CI/CD oraz podstaw pracy z narzędziami w stylu 
 | Katalog / Plik         | Opis                                                                                    |
 | ---------------------- | --------------------------------------------------------------------------------------- |
 | `Dockerfile`           | Obraz **Ubuntu 22.04** z zainstalowanymi podstawowymi narzędziami (curl, git, jq, itp.) |
-| `src/install-tools.sh` | Skrypt instalacyjny – instaluje wymagane narzędzia lokalnie lub w kontenerze            |
+| `src/scripts/install-tools.sh` | Skrypt instalacyjny – instaluje wymagane narzędzia lokalnie lub w kontenerze            |
 | `tests/check_tools.sh` | Skrypt testowy – weryfikuje poprawność instalacji narzędzi                              |
-| `src/create.sh`        | Skrypt Bash do tworzenia struktury projektu (z opcjonalnym README i katalogami)         |
+| `src/scripts/create.sh`        | Skrypt Bash do tworzenia struktury projektu (z opcjonalnym README i katalogami)         |
 | `src/doc-summary.sh`   | Skrypt Bash analizujący logi, generujący raport błędów w formacie CSV                   |
 | `tests/`               | Zawiera testy i przykładowe pliki logów (np. `test.log`)                                |
 | `docs/`                | Dokumentacja projektu – opis Dockerfile, skryptów i workflow GitHub Actions             |
@@ -32,7 +32,7 @@ Tworzy nowy projekt z podstawową strukturą katalogów i opcjonalnym plikiem RE
 **Użycie:**
 
 ```bash
-./create.sh [opcje] <nazwa_projektu> [podfoldery...]
+./scripts/create.sh [opcje] <nazwa_projektu> [podfoldery...]
 ```
 
 **Opcje:**
@@ -42,8 +42,8 @@ Tworzy nowy projekt z podstawową strukturą katalogów i opcjonalnym plikiem RE
 **Przykład:**
 
 ```bash
-./create.sh myapp src config docs
-./create.sh -r devops-lab scripts logs
+./scripts/create.sh myapp src config docs
+./scripts/create.sh -r devops-lab scripts logs
 ```
 
 ---
@@ -55,17 +55,17 @@ Analizuje błędy w pliku logu, zlicza ich ilość, pokazuje 10 najczęstszych i
 **Użycie:**
 
 ```bash
-./doc-summary.sh <plik_logu> [plik_wyjściowy.csv]
+./scripts/doc-summary.sh <plik_logu> [plik_wyjściowy.csv]
 ```
 
 **Przykłady:**
 
 ```bash
 # Analiza przykładowego logu
-./doc-summary.sh tests/test.log
+./scripts/doc-summary.sh tests/test.log
 
 # Analiza własnego logu systemowego i zapis do custom_report.csv
-./doc-summary.sh /var/log/syslog custom_report.csv
+./scripts/doc-summary.sh /var/log/syslog custom_report.csv
 ```
 
 **Wynik działania:**
@@ -123,4 +123,3 @@ Workflow CI/CD (plik `.github/workflows/main.yml`) automatycznie:
 **GitHub:** [alittlerat](https://github.com/alittlerat)
 **Data ostatniej edycji:** 03.11.2025
 
-==========================================================================================================================
