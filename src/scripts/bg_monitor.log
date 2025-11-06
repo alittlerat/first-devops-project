@@ -1,0 +1,12 @@
+[2025-11-06 19:53:04] [INFO] Zużycie dysku: 33% (próg: 1%)
+[2025-11-06 19:53:04] [WARN] Przekroczony próg dysku: 33% > 1%
+[2025-11-06 19:53:04] [INFO] Zużycie RAM: 20% (próg: 1%)
+[2025-11-06 19:53:04] [WARN] Przekroczony próg RAM: 20% > 1%
+[2025-11-06 19:53:04] [INFO] Zużycie CPU: 34% (próg: 1%)
+[2025-11-06 19:53:04] [WARN] Przekroczony próg CPU: 34% > 1%
+[2025-11-06 19:53:14] [INFO] Zużycie dysku: 33% (próg: 60%)
+[2025-11-06 19:53:14] [INFO] Dysk OK
+[2025-11-06 19:53:14] [INFO] Zużycie RAM: 20% (próg: 25%)
+[2025-11-06 19:53:14] [INFO] RAM OK
+[2025-11-06 19:53:14] [INFO] Zużycie CPU: 5% (próg: 30%)
+[2025-11-06 19:53:14] [INFO] CPU OK
