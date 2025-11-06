@@ -23,5 +23,5 @@ jobs:
       - name: Run tests in Docker container
         run: |
           echo "Running tool version checks..."
-          docker run --rm first-devops-project bash -c "cd /first-devops-project/tests && ./src/scripts/check_tools.sh"
+          docker run --rm first-devops-project bash -c "cd /first-devops-project/tests && ./check_tools.sh"
 
