@@ -4,11 +4,11 @@
 
 ### 1.1 RPO (Recovery Point Objective)
 - RPO = **2 godziny**  
-  Maksymalna akceptowalna utrata danych to jeden dzień pracy. Dane starsze niż 24 godziny muszą być możliwe do odzyskania z backupów.
+  Maksymalna akceptowalna utrata danych to jeden 2 godziny. Dane starsze niż 2 godziny muszą być możliwe do odzyskania z backupów.
 
 ### 1.2 RTO (Recovery Time Objective)
 - RTO = **30 minut**  
-  Czas potrzebny na pełne odtworzenie systemu i przywrócenie działania po awarii nie może przekraczać dwóch godzin.
+  Czas potrzebny na pełne odtworzenie systemu i przywrócenie działania po awarii nie może przekraczać 30 minut.
 
 ### 1.3 Krytyczne dane wymagające ochrony
 - Dane przechowywane w kluczowych tabelach bazy PostgreSQL, w szczególności:
@@ -27,8 +27,10 @@
 ## 2. Strategia kopii zapasowych
 
 ### 2.1 Rodzaje kopii
-- **Kopia pełna** (full backup) – kompletny zrzut bazy.
-- **Kopie przyrostowe** (incremental) – oparte o WAL archiving.
+- **Kopia pełna fizyczna** – wykonywana narzędziem `pg_basebackup`.  
+  Zawiera kompletny katalog danych PostgreSQL.
+- **Kopie przyrostowe** – realizowane przez continuous archiving (WAL archiving).  
+  Każdy wygenerowany plik WAL jest kopiowany do katalogu archiwizacji.
 
 ### 2.2 Częstotliwość wykonywania kopii
 - Pełny backup: **raz dziennie (00:00)**.
