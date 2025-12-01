@@ -1,0 +1,10 @@
+---
+- hosts: servers
+  become: yes
+
+  roles:
+    - base
+    - web
+    - database
+    - php
+    - app

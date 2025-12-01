@@ -1,0 +1,5 @@
+app_dir: /var/www/html/ansible_demo
+app_db_host: localhost
+app_db_name: ansible_demo
+app_db_user: ansible_user
+app_db_password: ansible_pass
