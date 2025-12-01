@@ -1,0 +1,6 @@
+---
+# Zmienne dla środowiska staging
+env_name: staging
+debug_mode: false # Wyłączamy debug
+security_level: medium
+optimization_level: standard

@@ -1,0 +1,6 @@
+---
+# Zmienne dla środowiska production
+env_name: production
+debug_mode: false
+security_level: high # Ścisłe zabezpieczenia
+optimization_level: max # Optymalizacja wydajności
