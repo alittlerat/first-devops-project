@@ -1,0 +1,16 @@
+---
+- name: Instalacja klienta MySQL
+  ansible.builtin.apt:
+    name: "{{ client_package_name }}"
+    state: present
+    update_cache: yes
+  tags: [client_install]
+
+- name: Weryfikacja połączenia (opcjonalna)
+  ansible.builtin.command: mysql --version
+  register: client_ver
+  changed_when: false
+
+- name: Pokaż wersję klienta
+  ansible.builtin.debug:
+    msg: "Zainstalowano klient MySQL: {{ client_ver.stdout }}"

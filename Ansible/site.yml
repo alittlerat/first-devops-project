@@ -1,0 +1,22 @@
+---
+- name: Wdrożenie infrastruktury bazodanowej
+  hosts: all
+  gather_facts: true
+  become: true # Wymagane sudo do instalacji pakietów
+
+  tasks:
+    - name: Weryfikacja środowiska
+      debug:
+        msg: "Wdrażanie na środowisko: {{ env_name | default('unknown') }}"
+
+- name: Konfiguracja Serwera Bazy Danych
+  hosts: db_servers
+  become: true
+  roles:
+    - role: mysql_server
+
+- name: Konfiguracja Klientów
+  hosts: db_clients
+  become: true
+  roles:
+    - role: mysql_client

@@ -1,0 +1,60 @@
+---
+- name: Instalacja zależności Python dla modułów MySQL
+  ansible.builtin.apt:
+    name: "{{ python_mysql_dependency }}"
+    state: present
+    update_cache: yes
+  tags: [setup, install]
+
+- name: Instalacja serwera MySQL (Idempotentność)
+  ansible.builtin.apt:
+    name: "{{ mysql_package_name }}"
+    state: present
+  tags: [setup, install]
+
+- name: Konfiguracja my.cnf z szablonu
+  ansible.builtin.template:
+    src: main.yml
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    mode: '0644'
+  notify: Restart MySQL
+  tags: [config]
+
+- name: Uruchomienie serwera MySQL
+  ansible.builtin.service:
+    name: mysql
+    state: "{{ mysql_service_state }}"
+    enabled: "{{ mysql_service_enabled }}"
+  tags: [service]
+
+# OBSŁUGA BŁĘDOW
+- name: Konfiguracja Bazy Danych i Użytkowników
+  block:
+    - name: Utworzenie bazy danych aplikacji
+      community.mysql.mysql_db:
+        name: "{{ app_db_name }}"
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+    - name: Utworzenie użytkownika aplikacji
+      community.mysql.mysql_user:
+        name: "{{ app_db_user }}"
+        password: "{{ app_db_pass }}"
+        priv: "{{ app_db_name }}.*:ALL"
+        host: "%" # Pozwalamy na łączenie z każdego hosta (dla klienta)
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+  rescue:
+    - name: ROLLBACK - Wyświetlenie błędu konfiguracji DB
+      ansible.builtin.debug:
+        msg: "Błąd podczas tworzenia bazy lub użytkownika! Sprawdź logi lub uprawnienia root."
+
+  tags: [database]
+
+# Handler
+handlers:
+  - name: Restart MySQL
+    ansible.builtin.service:
+      name: mysql
+      state: restarted

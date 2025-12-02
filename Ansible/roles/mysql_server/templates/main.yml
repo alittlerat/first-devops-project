@@ -1,0 +1,5 @@
+[mysqld]
+user            = mysql
+bind-address    = {{ mysql_bind_address }}
+port            = {{ mysql_port }}
+log_error       = /var/log/mysql/error.log

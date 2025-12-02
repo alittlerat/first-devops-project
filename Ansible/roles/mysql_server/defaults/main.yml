@@ -1,0 +1,3 @@
+# Domyślne wartości
+mysql_service_state: started
+mysql_service_enabled: true

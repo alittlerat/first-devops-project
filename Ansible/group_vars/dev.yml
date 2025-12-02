@@ -1,0 +1,5 @@
+env_name: development
+db_root_password: "root_password_dev"
+app_db_name: "app_db_dev"
+app_db_user: "dev_user"
+app_db_pass: "dev_pass"
