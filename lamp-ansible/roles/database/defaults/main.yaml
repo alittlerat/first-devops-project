@@ -1,4 +1,0 @@
-mysql_root_password: root123
-app_db_name: ansible_demo
-app_db_user: ansible_user
-app_db_password: ansible_pass

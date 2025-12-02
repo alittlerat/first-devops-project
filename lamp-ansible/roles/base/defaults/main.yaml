@@ -1,5 +1,0 @@
-packages_common:
-  - vim
-  - curl
-  - git
-  - ufw
