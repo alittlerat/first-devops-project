@@ -1,6 +1,0 @@
----
-# Zmienne dla środowiska development
-env_name: development
-debug_mode: true
-security_level: low
-optimization_level: basic
