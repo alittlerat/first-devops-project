@@ -14,7 +14,7 @@
 
 - name: Konfiguracja my.cnf z szablonu
   ansible.builtin.template:
-    src: main.yml
+    src: my.cnf.j2
     dest: /etc/mysql/mysql.conf.d/mysqld.cnf
     mode: '0644'
   notify: Restart MySQL
@@ -49,12 +49,4 @@
     - name: ROLLBACK - Wyświetlenie błędu konfiguracji DB
       ansible.builtin.debug:
         msg: "Błąd podczas tworzenia bazy lub użytkownika! Sprawdź logi lub uprawnienia root."
-
   tags: [database]
-
-# Handler
-handlers:
-  - name: Restart MySQL
-    ansible.builtin.service:
-      name: mysql
-      state: restarted

@@ -1,5 +1,11 @@
+---
+# Zmienne połączeniowe SSH/SUDO (dla wszystkich hostów)
+ansible_ssh_user: test
+ansible_become_user: root
+
+# Zmienne ogólne
 mysql_port: 3306
 mysql_bind_address: "0.0.0.0"
 mysql_package_name: mysql-server
 client_package_name: mysql-client
-python_mysql_dependency: python3-pymysql # Wymagane przez Ansible do zarządzania bazą
+python_mysql_dependency: python3-pymysql

@@ -1,21 +1,33 @@
 ---
-- name: Wdrożenie infrastruktury bazodanowej
+# Wdrożenie Klucza SSH i Gathering Facts
+# Ten Play ustawia uwierzytelnianie kluczem publicznym na hostach
+- name: Przygotowanie Srodowiska i Wdrozenie Klucza SSH
   hosts: all
   gather_facts: true
-  become: true # Wymagane sudo do instalacji pakietów
+  become: true
 
   tasks:
-    - name: Weryfikacja środowiska
-      debug:
-        msg: "Wdrażanie na środowisko: {{ env_name | default('unknown') }}"
+    # UWIERZYTELNIANIE: Wdrozenie klucza publicznego dla uzytkownika 'test'
+    - name: Wdrozenie klucza publicznego dla uzytkownika {{ ansible_ssh_user }}
+      ansible.builtin.authorized_key:
+        user: "{{ ansible_ssh_user }}"
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
+      tags: [ssh_setup]
 
+    - name: Weryfikacja środowiska
+      ansible.builtin.debug:
+        msg: "Wdrażanie na środowisko bazodanowe."
+
+# Konfiguracja Serwera Bazy Danych
 - name: Konfiguracja Serwera Bazy Danych
   hosts: db_servers
   become: true
   roles:
     - role: mysql_server
 
-- name: Konfiguracja Klientów
+# Konfiguracja Klienta Bazy Danych
+- name: Konfiguracja Klienta Bazy Danych
   hosts: db_clients
   become: true
   roles:
