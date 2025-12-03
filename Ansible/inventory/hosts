@@ -1,8 +1,8 @@
 [db_servers]
-vm1_db ansible_host=172.16.174.138
+ansibleone
 
 [db_clients]
-vm2_client ansible_host=172.16.174.137
+ansibletwo
 
 # Grupy środowiskowe
 [dev:children]
