@@ -1,4 +1,4 @@
-# 🚀 Projekt Automatyzacji MySQL z Ansible
+#  Projekt Automatyzacji MySQL z Ansible
 
 Ten projekt wdraża kompletną infrastrukturę bazodanową:
 1.  **Serwer MySQL** na maszynach z grupy `db_servers`.
@@ -8,7 +8,7 @@ Całe wdrożenie wykorzystuje **klucze SSH** do uwierzytelniania, co jest zgodne
 
 ---
 
-## 🏗️ Struktura i Najważniejsze Elementy
+## Struktura i Najważniejsze Elementy
 
 Projekt jest zorganizowany zgodnie z najlepszymi praktykami Ansible:
 
@@ -19,7 +19,7 @@ Projekt jest zorganizowany zgodnie z najlepszymi praktykami Ansible:
     * `dev.yml` / `prod.yml`: Zmienne specyficzne dla środowiska (np. nazwy baz danych, hasła aplikacji).
 * **`inventory/hosts`**: Definicja hostów docelowych (`db_servers`, `db_clients`).
 
-## 🔐 Wymagania i Konfiguracja
+## Wymagania i Konfiguracja
 
 ### Wymagania Wstępne
 1.  **Ansible**: Zainstalowany lokalnie.
